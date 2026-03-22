@@ -10,7 +10,12 @@ builder.Services.AddStackExchangeRedisCache(options =>
     options.InstanceName = "SampleInstance";
 });
 
-
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<MyDatabaseContext>();
+    context.Database.Migrate(); // Це створить таблиці, якщо їх немає
+}
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
