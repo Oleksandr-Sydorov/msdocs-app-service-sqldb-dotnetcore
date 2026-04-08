@@ -71,3 +71,4 @@ jobs:
           app-name: 'VHLR2'
           slot-name: 'Production'
           package: .
+          startup-command: 'dotnet DotNetCoreSqlDb.dll'
