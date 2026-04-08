@@ -24,8 +24,7 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<MyDatabaseContext>();
     context.Database.Migrate(); // Це створить таблиці, якщо їх немає
 }
-//
-// Configure the HTTP request pipeline.
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
