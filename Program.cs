@@ -6,7 +6,8 @@ builder.Services.AddDbContext<MyDatabaseContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")));
 builder.Services.AddStackExchangeRedisCache(options =>
 {
-    options.Configuration = builder.Configuration.GetConnectionString("AZURE_REDIS_REDISCONNECTOR_CONNECTIONSTRING");
+    options.Configuration = Environment.GetEnvironmentVariable("AZURE_REDIS_REDISCONNECTOR_CONNECTIONSTRING")
+        ?? builder.Configuration.GetConnectionString("AZURE_REDIS_REDISCONNECTOR_CONNECTIONSTRING");
     options.InstanceName = "SampleInstance";
 });
 
